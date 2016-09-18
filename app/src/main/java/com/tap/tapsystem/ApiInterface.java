@@ -9,7 +9,7 @@ import retrofit2.http.POST;
  */
 public interface ApiInterface {
 
-    @POST("/charging")
+    @POST("charging")
     Call<FairCharging> charge(@Body FairCharging fair);
 
 }

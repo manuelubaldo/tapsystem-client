@@ -7,6 +7,8 @@ public class FairCharging {
     private String Destination;
     private String CardNo;
     private String Remarks;
+    private Double Balance;
+    private String PhoneNo;
 
     public String getDestination() {
         return Destination;
@@ -30,5 +32,21 @@ public class FairCharging {
 
     public void setRemarks(String remarks) {
         Remarks = remarks;
+    }
+
+    public Double getBalance() {
+        return Balance;
+    }
+
+    public void setBalance(Double balance) {
+        Balance = balance;
+    }
+
+    public String getPhoneNo() {
+        return PhoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        PhoneNo = phoneNo;
     }
 }

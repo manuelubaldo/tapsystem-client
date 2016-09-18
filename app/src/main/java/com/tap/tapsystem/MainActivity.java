@@ -2,11 +2,15 @@ package com.tap.tapsystem;
 
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -41,27 +45,43 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "NFC Not Supported", Toast.LENGTH_LONG).show();
         }
 
-        SendSMS("5554","Hello World");
+        //SendSMS("5554","Hello World");
+    }
+
+    public void OnClick(View view){
+        EditText samplenfcno = (EditText) findViewById(R.id.samplenfcno);
+        Spinner dest = (Spinner) findViewById(R.id.destinations);
+
+
         ApiInterface api = ApiClient.client().create(ApiInterface.class);
         FairCharging fair = new FairCharging();
-        fair.setCardNo("20160000000001");
-        fair.setDestination("Brgy. Sampaloc II");
+        fair.setCardNo(samplenfcno.getText().toString());
+        fair.setDestination(dest.getSelectedItem().toString());
         fair.setRemarks("");
-
         Call<FairCharging> call = api.charge(fair);
+
         call.enqueue(new Callback<FairCharging>() {
             @Override
             public void onResponse(Call<FairCharging> call, Response<FairCharging> response) {
                 FairCharging result = response.body();
-                Log.d(TAG,"Charging : " + result.toString());
+                final TextView remarks = (TextView) findViewById(R.id.remarks);
+                remarks.setText(response.body().getRemarks());
+                //SendSMS(response.body().getPhoneNo(),"Thank you for patronizing our Services.");
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        remarks.setText("Please Tap your Card");
+                    }
+                },1500);
             }
 
             @Override
             public void onFailure(Call<FairCharging> call, Throwable t) {
-
+                TextView remarks = (TextView) findViewById(R.id.remarks);
+                remarks.setText(t.getMessage());
             }
         });
-
     }
 
     private void SendSMS(String phoneNo , String message){
