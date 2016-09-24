@@ -1,24 +1,23 @@
 package com.tap.tapsystem;
 
+import android.Manifest;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,11 +30,17 @@ public class MainActivity extends AppCompatActivity {
     private Spinner DestinationsSpinner;
     private NfcAdapter nfc;
     private ApiInterface api;
+    private TextView remarks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
+
+        api = ApiClient.client().create(ApiInterface.class);
+
         RoutesSpinner = (Spinner) findViewById(R.id.routes);
         DestinationsSpinner = (Spinner) findViewById(R.id.destinations);
 
@@ -43,27 +48,34 @@ public class MainActivity extends AppCompatActivity {
         routes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         RoutesSpinner.setAdapter(routes);
 
-        ArrayAdapter<CharSequence> destinations = ArrayAdapter.createFromResource(this,R.array.destinations,android.R.layout.simple_spinner_dropdown_item);
-        destinations.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        DestinationsSpinner.setAdapter(destinations);
+
 
 
         nfc = NfcAdapter.getDefaultAdapter(this);
         if (nfc==null){
-            Toast.makeText(MainActivity.this, "NFC Not Supported", Toast.LENGTH_LONG).show();
+            //Toast.makeText(MainActivity.this, "NFC Not Supported", Toast.LENGTH_LONG).show();
         }
 
-        //loadSubRoutes();
+        remarks = (TextView) findViewById(R.id.remarks);
+//        try{
+            loadSubRoutes();
+//        }catch (Exception ex){
+//            ArrayAdapter<CharSequence> destinations = ArrayAdapter.createFromResource(this,R.array.destinations,android.R.layout.simple_spinner_dropdown_item);
+//            destinations.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//            DestinationsSpinner.setAdapter(destinations);
+//            Toast.makeText(this,ex.getMessage(),Toast.LENGTH_LONG).show();
+//        }
 
-        //SendSMS("5554","Hello World");
+
     }
+
 
     public void OnClick(View view){
         EditText samplenfcno = (EditText) findViewById(R.id.samplenfcno);
         Spinner dest = (Spinner) findViewById(R.id.destinations);
 
-
-        api = ApiClient.client().create(ApiInterface.class);
+        remarks.setText("Please Wait...");
+//        api = ApiClient.client().create(ApiInterface.class);
         FairCharging fair = new FairCharging();
         fair.setCardNo(samplenfcno.getText().toString());
         fair.setDestination(dest.getSelectedItem().toString());
@@ -74,9 +86,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<FairCharging> call, Response<FairCharging> response) {
                 FairCharging result = response.body();
-                final TextView remarks = (TextView) findViewById(R.id.remarks);
+
                 remarks.setText(response.body().getRemarks());
-                //SendSMS(response.body().getPhoneNo(),"Thank you for patronizing our Services.");
+                SendSMS(response.body().getPhoneNo(),"Thank you for patronizing our Services.");
+
+            }
+
+            @Override
+            public void onFailure(Call<FairCharging> call, Throwable t) {
+                remarks.setText(t.getMessage());
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -85,18 +103,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                 },1500);
             }
-
-            @Override
-            public void onFailure(Call<FairCharging> call, Throwable t) {
-                TextView remarks = (TextView) findViewById(R.id.remarks);
-                remarks.setText(t.getMessage());
-            }
         });
     }
 
     private void SendSMS(String phoneNo , String message){
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phoneNo,null,message,null,null);
+        try{
+            SmsManager sms = SmsManager.getDefault();
+            sms.sendTextMessage(phoneNo,null,message,null,null);
+            Toast.makeText(MainActivity.this,"SMS was sent",Toast.LENGTH_LONG).show();
+        }
+        catch (Exception ex){
+            Toast.makeText(MainActivity.this,"Unable to send SMS",Toast.LENGTH_LONG).show();
+            Log.d(TAG,ex.getMessage());
+        }
+
     }
 
     private void loadSubRoutes()
@@ -106,19 +126,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<SubRoutes>> call, Response<List<SubRoutes>> response) {
                 List<SubRoutes> subRoutes = response.body();
-                List<String> subRoute = new ArrayList<String>();
+                Log.d(TAG,"Length : " + subRoutes.size());
+                List<String> subRoute = new ArrayList<>();
 
                 for(SubRoutes s : subRoutes){
                     subRoute.add(s.gettRouteName());
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this ,android.R.layout.simple_spinner_dropdown_item,subRoute);
+                Log.d(TAG,"Length : " + subRoute.size());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this ,android.R.layout.simple_spinner_dropdown_item,subRoute);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 DestinationsSpinner.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<List<SubRoutes>> call, Throwable t) {
-
+                Log.d(TAG,t.toString());
             }
         });
     }
