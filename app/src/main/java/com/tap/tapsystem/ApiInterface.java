@@ -1,7 +1,10 @@
 package com.tap.tapsystem;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -11,5 +14,8 @@ public interface ApiInterface {
 
     @POST("charging")
     Call<FairCharging> charge(@Body FairCharging fair);
+
+    @GET("subroutes")
+    Call<List<SubRoutes>>  getSubRoutes();
 
 }

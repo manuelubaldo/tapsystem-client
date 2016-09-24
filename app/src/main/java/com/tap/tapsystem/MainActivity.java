@@ -9,9 +9,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner RoutesSpinner;
     private Spinner DestinationsSpinner;
     private NfcAdapter nfc;
+    private ApiInterface api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "NFC Not Supported", Toast.LENGTH_LONG).show();
         }
 
+        //loadSubRoutes();
+
         //SendSMS("5554","Hello World");
     }
 
@@ -53,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         Spinner dest = (Spinner) findViewById(R.id.destinations);
 
 
-        ApiInterface api = ApiClient.client().create(ApiInterface.class);
+        api = ApiClient.client().create(ApiInterface.class);
         FairCharging fair = new FairCharging();
         fair.setCardNo(samplenfcno.getText().toString());
         fair.setDestination(dest.getSelectedItem().toString());
@@ -87,6 +97,30 @@ public class MainActivity extends AppCompatActivity {
     private void SendSMS(String phoneNo , String message){
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage(phoneNo,null,message,null,null);
+    }
+
+    private void loadSubRoutes()
+    {
+        Call<List<SubRoutes>> call = api.getSubRoutes();
+        call.enqueue(new Callback<List<SubRoutes>>() {
+            @Override
+            public void onResponse(Call<List<SubRoutes>> call, Response<List<SubRoutes>> response) {
+                List<SubRoutes> subRoutes = response.body();
+                List<String> subRoute = new ArrayList<String>();
+
+                for(SubRoutes s : subRoutes){
+                    subRoute.add(s.gettRouteName());
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this ,android.R.layout.simple_spinner_dropdown_item,subRoute);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                DestinationsSpinner.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<SubRoutes>> call, Throwable t) {
+
+            }
+        });
     }
 
 }
