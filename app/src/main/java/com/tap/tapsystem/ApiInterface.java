@@ -18,4 +18,10 @@ public interface ApiInterface {
     @GET("subroutes")
     Call<List<SubRoutes>>  getSubRoutes();
 
+    @GET("routes")
+    Call<List<Routes>>  getRoutes();
+
+    @GET("bus")
+    Call<List<Bus>> getBuses();
+
 }
