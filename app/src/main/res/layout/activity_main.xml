@@ -45,9 +45,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView4"
         android:text="20160000000001"
-        android:id="@+id/samplenfcno"/>
+        android:id="@+id/samplenfcno"
+        android:layout_below="@+id/plateno"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,7 +57,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="TAP HERE"
         android:id="@+id/textView4"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/samplenfcno"
         android:layout_centerHorizontal="true" />
 
 
@@ -76,6 +78,42 @@
         android:layout_below="@+id/remarks"
         android:layout_centerHorizontal="true"
         android:onClick="OnClick"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/seat"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/destinations"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:id="@+id/seats"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Plate No."
+        android:id="@+id/textView6"
+        android:layout_below="@+id/seats"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:id="@+id/plateno"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
