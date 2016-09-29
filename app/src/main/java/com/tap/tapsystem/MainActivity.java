@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Spinner plateno = (Spinner) findViewById(R.id.plateno);
 
         remarks.setText("Please Wait...");
-//        api = ApiClient.client().create(ApiInterface.class);
+        api = ApiClient.client().create(ApiInterface.class);
         FairCharging fair = new FairCharging();
         fair.setCardNo(samplenfcno.getText().toString());
         fair.setDestination(dest.getSelectedItem().toString());
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<SubRoutes>> call, Throwable t) {
-                Log.d(TAG,t.toString());
+                Log.d(TAG + " - loadSubRoutes",t.toString());
             }
         });
 
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Routes>> call, Throwable t) {
-                Log.d(TAG,t.toString());
+                Log.d(TAG + " - loadSubRoutes",t.toString());
             }
         });
 
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 for(Bus b:buses){
                     bus.add(b.gettPlateNo());
                 }
-                ArrayAdapter<String> busAdapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_spinner_dropdown_item,bus);
+                ArrayAdapter<String> busAdapter = new ArrayAdapter<>(MainActivity.this,android.R.layout.simple_spinner_dropdown_item,bus);
                 busAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 Spinner BusSpinner = (Spinner) findViewById(R.id.plateno);
                 BusSpinner.setAdapter(busAdapter);
