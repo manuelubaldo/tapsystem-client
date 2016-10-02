@@ -24,4 +24,7 @@ public interface ApiInterface {
     @GET("bus")
     Call<List<Bus>> getBuses();
 
+    @POST("login")
+    Call<User> login(@Body User user);
+
 }
