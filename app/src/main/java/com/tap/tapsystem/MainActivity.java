@@ -1,6 +1,7 @@
 package com.tap.tapsystem;
 
 import android.Manifest;
+import android.app.Activity;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,7 +23,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private Spinner RoutesSpinner;
