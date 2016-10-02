@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Appcelerator" parent="@style/Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/primaryDark</item>
+        <item name="colorControlHighlight">@color/colorHighlight</item>
+        <item name="colorControlActivated">@color/colorActivated</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:statusBarColor">@color/primaryDark</item>
+        <item name="android:textColorPrimary">@color/textPrimary</item>
+        <item name="android:background">@color/background</item>
+        <item name="android:windowTitleBackgroundStyle">@color/primary</item>
+    </style>
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/primary</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <style name="AppTheme.ButtonDark" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorButtonDark</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <color name="colorActivated">#00796B</color>
+    <color name="primary">#00796B</color>
+    <color name="primaryDark">#00695C</color>
+    <color name="textPrimary">#FFF</color>
+    <color name="accent">#FFF</color>
+    <color name="colorHighlight">#FFF</color>
+    <color name="background">#212121</color>
+    <color name="colorButtonDark">#424242</color>
+
+
+</resources>
