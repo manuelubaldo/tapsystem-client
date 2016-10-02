@@ -6,6 +6,8 @@ package com.tap.tapsystem;
 
 public class User {
 
+    private int iUserID;
+    private String tAccountType;
     private String tUserName;
     private String tPassword;
 
@@ -23,5 +25,21 @@ public class User {
 
     public void settUserName(String tUserName) {
         this.tUserName = tUserName;
+    }
+
+    public String gettAccountType() {
+        return tAccountType;
+    }
+
+    public void settAccountType(String tAccountType) {
+        this.tAccountType = tAccountType;
+    }
+
+    public int getiUserID() {
+        return iUserID;
+    }
+
+    public void setiUserID(int iUserID) {
+        this.iUserID = iUserID;
     }
 }
