@@ -2,11 +2,11 @@ package com.tap.tapsystem;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
@@ -32,26 +32,50 @@ public class MainActivity extends Activity {
     private ApiInterface api;
     private TextView remarks;
 
+    private int userID;
+    private int iBusID;
+    private String tBusPlateNo;
+    private int iRouteID;
+    private String tRouteName;
+    private int iSeatNo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
+        Intent intent = getIntent();
+        Bundle bd = intent.getExtras();
 
-        api = ApiClient.client().create(ApiInterface.class);
+        if(bd!=null){
 
-        RoutesSpinner = (Spinner) findViewById(R.id.routes);
-        DestinationsSpinner = (Spinner) findViewById(R.id.destinations);
+            iBusID = bd.getInt("iBusID");
+            tBusPlateNo = bd.getString("tBusPlateNo");
+            iRouteID = bd.getInt("iRouteID");
+            tRouteName = bd.getString("tRouteName");
+            iSeatNo = bd.getInt("iSeatNo");
 
-        nfc = NfcAdapter.getDefaultAdapter(this);
-        if (nfc==null){
-            //Toast.makeText(MainActivity.this, "NFC Not Supported", Toast.LENGTH_LONG).show();
+            api = ApiClient.client().create(ApiInterface.class);
+
+            DestinationsSpinner = (Spinner) findViewById(R.id.destinations);
+
+            nfc = NfcAdapter.getDefaultAdapter(this);
+            if (nfc==null){
+                //Toast.makeText(MainActivity.this, "NFC Not Supported", Toast.LENGTH_LONG).show();
+            }
+
+            remarks = (TextView) findViewById(R.id.remarks);
+            loadSubRoutes();
+
+            TextView route = (TextView) findViewById(R.id.routes);
+            TextView seats = (TextView) findViewById(R.id.seat);
+            TextView plateNo  = (TextView) findViewById(R.id.plateno);
+            route.setText(tRouteName);
+            seats.setText(""+iSeatNo);
+            plateNo.setText(tBusPlateNo);
+
         }
 
-        remarks = (TextView) findViewById(R.id.remarks);
-        loadSubRoutes();
-        loadBuses();
 
 
     }
@@ -60,19 +84,17 @@ public class MainActivity extends Activity {
     public void OnClick(View view){
         EditText samplenfcno = (EditText) findViewById(R.id.samplenfcno);
         Spinner dest = (Spinner) findViewById(R.id.destinations);
-        Spinner route = (Spinner) findViewById(R.id.routes);
-        Spinner seats = (Spinner) findViewById(R.id.seats);
-        Spinner plateno = (Spinner) findViewById(R.id.plateno);
+
 
         remarks.setText("Please Wait...");
         api = ApiClient.client().create(ApiInterface.class);
         FairCharging fair = new FairCharging();
         fair.setCardNo(samplenfcno.getText().toString());
         fair.setDestination(dest.getSelectedItem().toString());
-        fair.setRoute(route.getSelectedItem().toString());
-        fair.setBusPlateNo(plateno.getSelectedItem().toString());
+        fair.setRoute(tRouteName);
+        fair.setBusPlateNo(tBusPlateNo);
         fair.setRemarks("");
-        fair.setSeatNo(seats.getSelectedItem().toString());
+        fair.setSeatNo(""+iSeatNo);
         Call<FairCharging> call = api.charge(fair);
 
         call.enqueue(new Callback<FairCharging>() {
@@ -143,62 +165,62 @@ public class MainActivity extends Activity {
             }
         });
 
-        Call<List<Routes>> call2 = api.getRoutes();
-        call2.enqueue(new Callback<List<Routes>>() {
-            @Override
-            public void onResponse(Call<List<Routes>> call, Response<List<Routes>> response) {
-                List<Routes> routes = response.body();
-                Log.d(TAG,"Length : " + routes.size());
-                List<String> route = new ArrayList<>();
+//        Call<List<Routes>> call2 = api.getRoutes();
+//        call2.enqueue(new Callback<List<Routes>>() {
+//            @Override
+//            public void onResponse(Call<List<Routes>> call, Response<List<Routes>> response) {
+//                List<Routes> routes = response.body();
+//                Log.d(TAG,"Length : " + routes.size());
+//                List<String> route = new ArrayList<>();
+//
+//                for(Routes s : routes){
+//                    route.add(s.getRouteName());
+//                }
+//                Log.d(TAG,"Length : " + route.size());
+//                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this ,android.R.layout.simple_spinner_dropdown_item,route);
+//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                RoutesSpinner.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Routes>> call, Throwable t) {
+//                Log.d(TAG + " - loadSubRoutes",t.toString());
+//            }
+//        });
 
-                for(Routes s : routes){
-                    route.add(s.getRouteName());
-                }
-                Log.d(TAG,"Length : " + route.size());
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this ,android.R.layout.simple_spinner_dropdown_item,route);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                RoutesSpinner.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Routes>> call, Throwable t) {
-                Log.d(TAG + " - loadSubRoutes",t.toString());
-            }
-        });
-
-        List<String> seats = new ArrayList<>();
-        for(int i = 1 ;i<=60;i++){
-            seats.add("" + i);
-        }
-
-        ArrayAdapter<String> seatsAdapter = new ArrayAdapter<>(MainActivity.this,android.R.layout.simple_spinner_dropdown_item,seats);
-        seatsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner seatsSpinner = (Spinner) findViewById(R.id.seats);
-        seatsSpinner.setAdapter(seatsAdapter);
+//        List<String> seats = new ArrayList<>();
+//        for(int i = 1 ;i<=60;i++){
+//            seats.add("" + i);
+//        }
+//
+//        ArrayAdapter<String> seatsAdapter = new ArrayAdapter<>(MainActivity.this,android.R.layout.simple_spinner_dropdown_item,seats);
+//        seatsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        Spinner seatsSpinner = (Spinner) findViewById(R.id.seats);
+//        seatsSpinner.setAdapter(seatsAdapter);
     }
 
-    public void loadBuses(){
-        Call<List<Bus>> call = api.getBuses();
-        call.enqueue(new Callback<List<Bus>>() {
-            @Override
-            public void onResponse(Call<List<Bus>> call, Response<List<Bus>> response) {
-                List<Bus> buses = response.body();
-                List<String> bus = new ArrayList<>();
-                for(Bus b:buses){
-                    bus.add(b.gettPlateNo());
-                }
-                ArrayAdapter<String> busAdapter = new ArrayAdapter<>(MainActivity.this,android.R.layout.simple_spinner_dropdown_item,bus);
-                busAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                Spinner BusSpinner = (Spinner) findViewById(R.id.plateno);
-                BusSpinner.setAdapter(busAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Bus>> call, Throwable t) {
-
-            }
-        });
-
-    }
+//    public void loadBuses(){
+//        Call<List<Bus>> call = api.getBuses();
+//        call.enqueue(new Callback<List<Bus>>() {
+//            @Override
+//            public void onResponse(Call<List<Bus>> call, Response<List<Bus>> response) {
+//                List<Bus> buses = response.body();
+//                List<String> bus = new ArrayList<>();
+//                for(Bus b:buses){
+//                    bus.add(b.gettPlateNo());
+//                }
+//                ArrayAdapter<String> busAdapter = new ArrayAdapter<>(MainActivity.this,android.R.layout.simple_spinner_dropdown_item,bus);
+//                busAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                Spinner BusSpinner = (Spinner) findViewById(R.id.plateno);
+//                BusSpinner.setAdapter(busAdapter);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Bus>> call, Throwable t) {
+//
+//            }
+//        });
+//
+//    }
 
 }
