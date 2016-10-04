@@ -50,9 +50,14 @@ public class HomeActivity extends Activity
                         User user = response.body();
                         if(user.getiUserID()==0){
                             Toast.makeText(HomeActivity.this,"Invalid Username or Password.",Toast.LENGTH_LONG).show();
-
+                            password.setText("");
+                            username.requestFocus();
                         }else{
-                            Intent intent = new Intent(HomeActivity.this,MainActivity.class);
+                            username.setText("");
+                            password.setText("");
+                            Intent intent = new Intent(HomeActivity.this,MenuActivity.class);
+                            intent.putExtra("username",user.gettUserName());
+                            intent.putExtra("userid",user.getiUserID());
                             startActivity(intent);
                         }
                         sign_in.setEnabled(true);
