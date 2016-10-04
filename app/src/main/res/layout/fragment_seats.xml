@@ -1,0 +1,759 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context="com.tap.tapsystem.SeatsActivity">
+
+<ScrollView
+    android:layout_height="match_parent"
+    android:scrollbars="horizontal|vertical"
+    android:layout_width="match_parent"
+    android:layout_marginTop="5dip"
+    android:scrollbarStyle="outsideInset"
+    android:fillViewport="true">
+
+<HorizontalScrollView
+    android:layout_height="wrap_content"
+    android:scrollbars="horizontal|vertical"
+    android:layout_width="wrap_content"
+    android:layout_marginTop="5dip">
+    
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton1"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton2"
+            android:layout_column="2"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton3"
+            android:layout_column="3"
+            android:layout_width="42dp"
+            android:layout_height="50dp"
+            android:background="@drawable/mid_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton4"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton5"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton51"
+            android:layout_column="8"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton6"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton7"
+            android:layout_column="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton8"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton10"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton52"
+            android:layout_column="8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton11"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton12"
+            android:layout_column="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton13"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton15"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton53"
+            android:layout_column="8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton16"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton17"
+            android:layout_column="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton18"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton20"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton54"
+            android:layout_column="8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton21"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:background="@drawable/left_chair"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton22"
+            android:layout_column="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton23"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton25"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton55"
+            android:layout_column="8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton26"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:background="@drawable/left_chair"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton27"
+            android:layout_column="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton28"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton30"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton56"
+            android:layout_column="8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton31"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:background="@drawable/left_chair"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton35"
+            android:layout_column="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton39"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton47"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton57"
+            android:layout_column="8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton32"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:background="@drawable/left_chair"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton36"
+            android:layout_column="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton40"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton48"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton58"
+            android:layout_column="8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton33"
+            android:layout_column="1"
+            android:layout_width="50dp"
+            android:background="@drawable/left_chair"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton37"
+            android:layout_column="2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton41"
+            android:layout_column="6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff=""  />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton49"
+            android:layout_column="7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/left_chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+        <ToggleButton
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton59"
+            android:layout_column="8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/chair"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textOn="OK"
+            android:textOff="" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Front"
+            android:id="@+id/textView7"
+            android:layout_column="6" />
+    </TableRow>
+
+</TableLayout>
+</HorizontalScrollView>
+</ScrollView>
+</LinearLayout>

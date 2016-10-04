@@ -16,13 +16,14 @@
         android:text="@string/route"
         android:id="@+id/textView2" />
 
-    <Spinner
-        android:id="@+id/routes"
-        android:layout_width="fill_parent"
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/route"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/routes" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,10 +90,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Spinner
-        android:id="@+id/seats"
-        android:layout_width="fill_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Plate No."
+        android:id="@+id/textView6"
+        android:layout_below="@+id/seat"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Seats"
+        android:id="@+id/seat"
         android:layout_below="@+id/textView5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -102,15 +116,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Plate No."
-        android:id="@+id/textView6"
-        android:layout_below="@+id/seats"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Spinner
         android:id="@+id/plateno"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/textView6"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
