@@ -1,13 +1,19 @@
 package com.tap.tapsystem;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +28,7 @@ public class SeatsActivity extends Activity implements View.OnClickListener {
     private String tRouteName;
     private int iSeatNo;
     private ApiInterface api;
+    private List<Integer> SeatsTaken = new ArrayList<Integer>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +50,8 @@ public class SeatsActivity extends Activity implements View.OnClickListener {
             loadBusAssignment();
         }
 
-
+        Button aisleButton = (Button) findViewById(R.id.aisle);
+        aisleButton.setOnClickListener(this);
 
     }
 
@@ -54,27 +62,73 @@ public class SeatsActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        int resourceID = view.getId();
+        final int resourceID = view.getId();
 
-        ToggleButton tg = (ToggleButton) findViewById(resourceID);
-        if(tg.getText()!=""){
+        if(resourceID == R.id.aisle){
+            Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("iBusID",iBusID);
+            intent.putExtra("iRouteID",iRouteID);
+            intent.putExtra("tBusPlateNo",tBusPlateNo);
+            intent.putExtra("tRouteName",tRouteName);
+            intent.putExtra("iSeatNo",0);
+            startActivity(intent);
+        }else{
 
-        }
 
-        for(int i = 1; i<61 ; i++){
-            int resID = getResources().getIdentifier("toggleButton" + i,"id",SeatsActivity.this.getPackageName());
-            if (resourceID == resID){
-                Intent intent = new Intent(this,MainActivity.class);
-                intent.putExtra("iBusID",iBusID);
-                intent.putExtra("iRouteID",iRouteID);
-                intent.putExtra("tBusPlateNo",tBusPlateNo);
-                intent.putExtra("tRouteName",tRouteName);
-                intent.putExtra("iSeatNo",i);
-                startActivity(intent);
-                break;
+            for(int i = 1; i<61 ; i++){
+                int resID = getResources().getIdentifier("toggleButton" + i,"id",SeatsActivity.this.getPackageName());
+                if (resourceID == resID){
+                    final ToggleButton tg = (ToggleButton) findViewById(resID);
+                    if(SeatsTaken.contains(i)){
+                        Toast.makeText(SeatsActivity.this,tg.getText() + " " + i,Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SeatsActivity.this);
+
+                        final int finalI = i;
+                        builder
+                                .setMessage("Seat was already taken. Do you want to proceed?")
+                                .setPositiveButton("Proceed",  new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        tg.setText("Ok");
+                                        Intent intent = new Intent(SeatsActivity.this,MainActivity.class);
+                                        intent.putExtra("iBusID",iBusID);
+                                        intent.putExtra("iRouteID",iRouteID);
+                                        intent.putExtra("tBusPlateNo",tBusPlateNo);
+                                        intent.putExtra("tRouteName",tRouteName);
+                                        intent.putExtra("iSeatNo", finalI);
+                                        startActivity(intent);
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        tg.setText("Ok");
+                                        dialog.cancel();
+                                    }
+                                })
+                                .show();
+                    }else{
+                        SeatsTaken.add(i);
+                        Toast.makeText(SeatsActivity.this,tg.getText(),Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SeatsActivity.this,MainActivity.class);
+                        intent.putExtra("iBusID",iBusID);
+                        intent.putExtra("iRouteID",iRouteID);
+                        intent.putExtra("tBusPlateNo",tBusPlateNo);
+                        intent.putExtra("tRouteName",tRouteName);
+                        intent.putExtra("iSeatNo",i);
+                        startActivity(intent);
+                        break;
+                    }
+
+                }
             }
+
+
         }
+
+
     }
+
 
     public void loadBusAssignment() {
         Call<BusAssignment> busAssignment = api.busAssignment(userID);
