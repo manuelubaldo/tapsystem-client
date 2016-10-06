@@ -4,12 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context="com.tap.tapsystem.SeatsActivity">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aisle"
+        android:id="@+id/aisle"/>
 
 <ScrollView
     android:layout_height="match_parent"
     android:scrollbars="horizontal|vertical"
     android:layout_width="match_parent"
-    android:layout_marginTop="5dip"
     android:scrollbarStyle="outsideInset"
     android:fillViewport="true">
 
@@ -756,4 +760,5 @@
 </TableLayout>
 </HorizontalScrollView>
 </ScrollView>
+
 </LinearLayout>
